@@ -41,3 +41,20 @@ docker run -d --name ysp-yang -p 19980:8787 \
 ```bash
 docker build -f Dockerfile.rust -t ysp-yang .
 ```
+
+compose yml（2026/11/25）
+```
+name: ysp-yang-fork
+
+services:
+  ysp-yang-fork:
+    image: ghcr.io/1dok/ysp-yang:latest
+    container_name: ysp-yang-fork
+    restart: unless-stopped
+
+    ports:
+      - "19981:8787"
+
+    volumes:
+      - ./channels.yaml:/app/channels.yaml:ro
+```
